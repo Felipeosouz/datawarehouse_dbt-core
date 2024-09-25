@@ -19,23 +19,25 @@ engine = create_engine(DATABASE_URL)
 
 api_key = 'RYNRE7HRJN84W6L0'
 
-ts = TimeSeries(key=api_key, output_format='pandas')
-
 empresas = ['AAPL', 'MSFT', 'GOOGL']
 
 dados_empresas = {}
 
-for empresa in empresas:
-    data, meta_data = ts.get_daily(symbol=empresa, outputsize='compact')
-    
-    data.columns = [f'{empresa}_{col}' for col in data.columns]
-    
-    dados_empresas[empresa] = data
+def buscar_dados_stocks(api_key, empresas, outputsize='compact'):
+    ts = TimeSeries(key=api_key, output_format='pandas')
+    for empresa in empresas:
+        data, metadata = ts.get_daily(symbol=empresa, outputsize=outputsize)
+        
+        data.columns = [f'{empresa}_{col}' for col in data.columns]
+        
+        dados_empresas[empresa] = data
 
-df_completo = pd.concat(dados_empresas.values(), axis=1)
-df_completo.to_csv("data.csv", index=False)
+    df_completo = pd.concat(dados_empresas.values(), axis=1)
+    df_completo.to_csv("data.csv", index=False)
+    return df_completo
 
 def salvar_no_postgres(df, schema='public'):
     df.to_sql("stocks", engine, if_exists='replace', index=True, index_label='Date', schema=schema)
 
-salvar_no_postgres(df_completo)
+df = buscar_dados_stocks(api_key, empresas)
+salvar_no_postgres(df)
