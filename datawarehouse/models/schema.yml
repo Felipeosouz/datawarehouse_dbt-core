@@ -1,0 +1,44 @@
+version: 2
+
+sources:
+  - name: dwhstocks
+    schema: public
+    tables:
+      - name: stocks
+        description: "Descrição da tabela que contém os dados financeiros"
+        columns:
+          - name: Date
+            description: "Data registrada"
+
+          - name: AAPL_1. open
+            description: "Preço de abertura da Apple (AAPL)"
+          - name: AAPL_2. high
+            description: "Preço máximo da Apple (AAPL)"
+          - name: AAPL_3. low
+            description: "Preço mínimo da Apple (AAPL)"
+          - name: AAPL_4. close
+            description: "Preço de fechamento da Apple (AAPL)"
+          - name: AAPL_5. volume
+            description: "Volume negociado da Apple (AAPL)"
+
+          - name: MSFT_1. open
+            description: "Preço de abertura da Microsoft (MSFT)"
+          - name: MSFT_2. high
+            description: "Preço máximo da Microsoft (MSFT)"
+          - name: MSFT_3. low
+            description: "Preço mínimo da Microsoft (MSFT)"
+          - name: MSFT_4. close
+            description: "Preço de fechamento da Microsoft (MSFT)"
+          - name: MSFT_5. volume
+            description: "Volume negociado da Microsoft (MSFT)"
+
+          - name: GOOGL_1. open
+            description: "Preço de abertura da Google (GOOGL)"
+          - name: GOOGL_2. high
+            description: "Preço máximo da Google (GOOGL)"
+          - name: GOOGL_3. low
+            description: "Preço mínimo da Google (GOOGL)"
+          - name: GOOGL_4. close
+            description: "Preço de fechamento da Google (GOOGL)"
+          - name: GOOGL_5. volume
+            description: "Volume negociado da Google (GOOGL)"
